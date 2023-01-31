@@ -313,10 +313,13 @@ def intent(mida: int, paraules: List[str]) -> Tuple[int, int, str, str, str]:
 def comprovar_intent(sopa: MatriuSopa, coor_x: int, coor_y: int, orientacio: str, direccio: str, paraula: str) -> bool:
     """Crea un segment mitjançant la funció segment_paraula i compara el segment
     amb la paraula. Retorna un boolean segons sigui igual o no."""
-    segment = segment_paraula(sopa, len(paraula), coor_x, coor_y, orientacio, direccio)
-    segment = "".join([x["c"] for x in segment])
+    if hi_cap(len(sopa), coor_x, coor_y, len(paraula), orientacio, direccio):
+        segment = segment_paraula(sopa, len(paraula), coor_x, coor_y, orientacio, direccio)
+        segment = "".join([x["c"] for x in segment])
 
-    return segment == paraula
+        return segment == paraula
+    
+    return False
 
 
 def marcar_paraula(sopa: MatriuSopa, coor_x: int, coor_y: int, orientacio: str, direccio: str, paraula: str) -> None:
